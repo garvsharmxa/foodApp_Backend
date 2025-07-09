@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 
 import { router as authRoutes } from './source/routes/auth.js';
 import foodRoutes from './source/routes/food.js';
-import shopRoutes from './source/routes/shop.js'
+import shopRoutes from './source/routes/shop.js';
 import cartRoutes from './source/routes/cart.js'
 import { adminJs, adminRouter } from './source/routes/admin-panel.js';
 
