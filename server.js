@@ -4,11 +4,11 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-import { router as authRoutes } from './routes/auth.js';
-import foodRoutes from './routes/food.js';
-import shopRoutes from './routes/Shop.js';
-import cartRoutes from './routes/cart.js'
-import { adminJs, adminRouter } from './routes/admin-panel.js';
+import { router as authRoutes } from './source/routes/auth.js';
+import foodRoutes from './source/routes/food.js';
+import shopRoutes from './source/routes/Shop.js';
+import cartRoutes from './source/routes/cart.js'
+import { adminJs, adminRouter } from './source/routes/admin-panel.js';
 
 dotenv.config(); // Load environment variables
 
