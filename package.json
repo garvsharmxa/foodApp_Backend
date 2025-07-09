@@ -1,0 +1,54 @@
+{
+  "name": "food-delivery-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "types": "module",
+  "scripts": {
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "food",
+    "delivery",
+    "backend",
+    "adminjs",
+    "express",
+    "mongoose"
+  ],
+  "author": "Garv Sharma",
+  "license": "ISC",
+  "description": "Backend for Food Delivery App with AdminJS panel",
+  "dependencies": {
+    "@adminjs/express": "^6.1.1",
+    "@adminjs/mongoose": "^4.1.0",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "adminjs": "^7.8.16",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-formidable": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.0",
+    "multer": "^2.0.1",
+    "nodemailer": "^7.0.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garvsharmxa/food-delivery-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/garvsharmxa/food-delivery-backend/issues"
+  },
+  "homepage": "https://github.com/garvsharmxa/food-delivery-backend#readme"
+}
