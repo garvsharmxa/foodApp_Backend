@@ -132,7 +132,7 @@ OrderSchema.pre('save', function(next) {
 OrderSchema.index({ userId: 1, createdAt: -1 });
 OrderSchema.index({ shopId: 1, createdAt: -1 });
 OrderSchema.index({ status: 1 });
-OrderSchema.index({ orderId: 1 });
+OrderSchema.index({ orderId: 1 }); // Keep this one, remove the "index: true" from schema field
 
 const Order = mongoose.models.Order || mongoose.model('Order', OrderSchema);
 

@@ -1,6 +1,8 @@
-// admin.js - Updated configuration with Cart resource
+// admin.js - Updated configuration with Cart resource and session fixes
 import AdminJS, { ComponentLoader } from 'adminjs';
 import AdminJSExpress from '@adminjs/express';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import User from '../models/User.js';
@@ -232,6 +234,24 @@ const ADMIN = {
   password: process.env.ADMIN_PASSWORD || 'Garvgarv12@'
 };
 
+// Configure session with proper options to fix deprecation warnings
+const sessionStore = MongoStore.create({
+  mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost:27017/food_delivery',
+  touchAfter: 24 * 3600 // lazy session update
+});
+
+const sessionOptions = {
+  store: sessionStore,
+  secret: process.env.SESSION_SECRET || 'your-secret-key-change-this-in-production',
+  resave: false, // Don't save session if unmodified
+  saveUninitialized: false, // Don't create session until something stored
+  cookie: {
+    secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 // 24 hours
+  }
+};
+
 const adminRouter = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
   authenticate: async (email, password) => {
     console.log('Authentication attempt:', email); // Debug log
@@ -242,6 +262,6 @@ const adminRouter = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
   },
   cookieName: 'adminjs',
   cookiePassword: process.env.ADMIN_COOKIE_SECRET || 'secret-key-change-this-in-production'
-});
+}, null, sessionOptions); // Pass session options here to fix deprecation warnings
 
 export { adminJs, adminRouter };
