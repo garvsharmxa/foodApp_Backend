@@ -6,7 +6,7 @@ import MongoStore from 'connect-mongo';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import User from '../models/User.js';
-import Shop from '../models/Shop.js';
+import Shop from '../models/shop.js';
 import Food from '../models/Food.js';
 import Order from '../models/Order.js';
 import Review from '../models/Review.js';

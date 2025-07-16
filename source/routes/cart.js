@@ -1,7 +1,7 @@
 import express from 'express';
 import Cart from '../models/cart.js';
 import Food from '../models/Food.js';
-import Shop from '../models/Shop.js';
+import Shop from '../models/shop.js';
 import Order from '../models/Order.js';
 import { verifyAccessToken as authenticateToken } from '../routes/auth.js';
 
