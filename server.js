@@ -18,16 +18,38 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('✅ MongoDB Connected'))
-.catch((err) => {
-  console.error('❌ MongoDB connection failed:', err.message);
-  process.exit(1); // Exit process if DB connection fails
+// MongoDB Connection - Updated with modern syntax
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('✅ MongoDB Connected'))
+  .catch((err) => {
+    console.error('❌ MongoDB connection failed:', err.message);
+    console.error('💡 Common solutions:');
+    console.error('   - Check if your IP is whitelisted in MongoDB Atlas');
+    console.error('   - Verify your MONGO_URI environment variable');
+    console.error('   - Ensure your MongoDB Atlas cluster is running');
+    process.exit(1); // Exit process if DB connection fails
+  });
+
+// MongoDB connection event listeners
+mongoose.connection.on('connected', () => {
+  console.log('🔗 Mongoose connected to MongoDB');
 });
+
+mongoose.connection.on('error', (err) => {
+  console.error('❌ Mongoose connection error:', err);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('⚠️ Mongoose disconnected from MongoDB');
+});
+
+// Graceful shutdown
+process.on('SIGINT', async () => {
+  await mongoose.connection.close();
+  console.log('📴 MongoDB connection closed through app termination');
+  process.exit(0);
+});
+
 
 // AdminJS Panel Setup
 app.use(adminJs.options.rootPath, adminRouter);
